@@ -24,3 +24,4 @@ publish/
 check_type.cs
 check_type.csx
 *.zip
+installer/*.exe
