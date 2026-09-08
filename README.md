@@ -2,8 +2,6 @@
 
 Windows 桌面底部音频律动柔光：在屏幕底端（任务栏正上方）渲染一条随系统声音律动的波光带，颜色自动跟随正在播放音乐的封面。点击穿透、不抢焦点、不遮挡任务栏，全屏时自动隐藏。
 
-![效果示意](https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=abstract%20glowing%20audio%20spectrum%20wave%20light%20band%20along%20bottom%20edge%20of%20dark%20desktop%20screen%2C%20soft%20blue%20purple%20gradient%2C%20smooth%20flowing%20waves%2C%20glassmorphism%2C%20dark%20background%2C%20elegant%20ambient%20light&image_size=landscape_16_9)
-
 ## 特性
 
 - **系统音频驱动**：WASAPI Loopback 采集所有正在播放的声音，FFT 实时频谱分析（约 21ms 周期）
