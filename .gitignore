@@ -11,3 +11,16 @@ __pycache__/
 *.pyc
 .next/
 coverage/
+
+# .NET 构建产物
+bin/
+obj/
+.vs/
+*.user
+publish/
+
+# IDE / 临时文件
+.trae/
+check_type.cs
+check_type.csx
+*.zip

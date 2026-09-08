@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <RootNamespace>RivuletLight</RootNamespace>
+    <AssemblyName>RivuletLight</AssemblyName>
+    <Version>1.0.0</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- WASAPI Loopback 音频采集 -->
+    <PackageReference Include="NAudio" Version="2.2.1" />
+    <!-- D3D11 / HLSL 渲染绑定 -->
+    <PackageReference Include="Vortice.Direct3D11" Version="3.8.3" />
+    <PackageReference Include="Vortice.D3DCompiler" Version="3.8.3" />
+    <!-- 托盘图标 -->
+    <PackageReference Include="System.Drawing.Common" Version="8.0.12" />
+  </ItemGroup>
+
+</Project>
