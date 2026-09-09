@@ -4,7 +4,7 @@
 ;       %LOCALAPPDATA%\Programs\RivuletLight，卸载时保留用户设置与日志。
 
 #define MyAppName "Rivulet Light"
-#define MyAppVersion "1.0.1"
+#define MyAppVersion "1.0.2"
 #define MyAppPublisher "Lenkmat"
 #define MyAppExeName "RivuletLight.exe"
 #define MyAppURL "https://github.com/Lenkmat/Rivulet-Light"

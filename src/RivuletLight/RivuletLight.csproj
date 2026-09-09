@@ -10,9 +10,9 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <RootNamespace>RivuletLight</RootNamespace>
     <AssemblyName>RivuletLight</AssemblyName>
-    <Version>1.0.1</Version>
-    <AssemblyVersion>1.0.1.0</AssemblyVersion>
-    <FileVersion>1.0.1.0</FileVersion>
+    <Version>1.0.2</Version>
+    <AssemblyVersion>1.0.2.0</AssemblyVersion>
+    <FileVersion>1.0.2.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,6 +23,14 @@
     <PackageReference Include="Vortice.D3DCompiler" Version="3.8.3" />
     <!-- 托盘图标 -->
     <PackageReference Include="System.Drawing.Common" Version="8.0.12" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- 着色器源码随应用分发：运行时从文件编译（Compiler.Compile(string) 的 ANSI
+         marshal 会破坏中文注释的多字节序列导致 X3000，文件路径编译不受影响） -->
+    <None Update="Rendering\WaveShader.hlsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

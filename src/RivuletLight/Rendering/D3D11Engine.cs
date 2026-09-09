@@ -379,7 +379,11 @@ float4 PS(VSOutput input) : SV_TARGET
         _device.CreateBuffer(cbDesc, null, out _constantBuffer);
 
         // ── 编译着色器 ─────────────────────────────────────────────────
-        // DEBUG 优先从文件编译，Release 使用嵌入字符串
+        // 一律优先从随包分发的 WaveShader.hlsl 文件编译（CompileFromFile 直读
+        // UTF-8 字节）。Compiler.Compile(string) 会把字符串按 ANSI(GBK) marshal，
+        // 中文注释的多字节序列被 D3DCompile 按 UTF-8 解释后破坏语法（X3000
+        // unexpected end of file），导致 Release 内嵌路径必现编译失败。
+        // 内嵌字符串仅在文件缺失时兜底。
         ReadOnlyMemory<byte> vsBytecode = default;
         ReadOnlyMemory<byte> psBytecode = default;
         var shaderFlags = ShaderFlags.EnableStrictness;
@@ -391,11 +395,16 @@ float4 PS(VSOutput input) : SV_TARGET
 #endif
 
         bool compiledFromFile = false;
-#if DEBUG
-        var shaderPath = Path.GetFullPath(Path.Combine(
-            AppDomain.CurrentDomain.BaseDirectory,
-            "..\\..\\..\\Rendering\\WaveShader.hlsl"));
-        if (File.Exists(shaderPath))
+        // 候选路径：发布形态（输出目录 Rendering\ 子目录 / exe 同级）、开发形态（bin\Debug 回溯源码树）
+        var shaderCandidates = new[]
+        {
+            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Rendering", "WaveShader.hlsl"),
+            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "WaveShader.hlsl"),
+            Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
+                "..\\..\\..\\Rendering\\WaveShader.hlsl")),
+        };
+        var shaderPath = shaderCandidates.FirstOrDefault(File.Exists);
+        if (shaderPath != null)
         {
             try
             {
@@ -409,7 +418,6 @@ float4 PS(VSOutput input) : SV_TARGET
                 compiledFromFile = false;
             }
         }
-#endif
 
         if (!compiledFromFile)
         {
